@@ -10,13 +10,13 @@ from setuptools import setup
 
 if __name__ == '__main__':
     setup(
-        name='prog',
+        name='meson-ui',
         version='0.1.0',
         author='Michael Gene Brockus',
         author_email='michaelbrockus@gmail.com',
         license='Apache 2',
         zip_safe=True,
-        url='https://github.com/troglobyte-coder/pypi_program_py',
+        url='https://github.com/troglobyte-apphub/meson-ui',
         packages=[
             'code'
         ],
