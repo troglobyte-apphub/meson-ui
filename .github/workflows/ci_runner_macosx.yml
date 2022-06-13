@@ -1,0 +1,56 @@
+name: Host MacOSX CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+
+jobs:
+  host_macosx_latest:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.9.x'
+    - run: pip install meson ninja scan-build
+    - run: python3 -m pip install -r requirements.txt
+    - run: python3 -m pytest test/run_tests.py
+
+  host_macosx_10:
+    runs-on: macos-10.15
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v3
+      with:
+        python-version: '3.9.x'
+    - run: pip install meson ninja scan-build
+    - run: python3 -m pip install -r requirements.txt
+    - run: python3 -m pytest test/run_tests.py
+
+  host_macosx_11:
+    runs-on: macos-11
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v3
+      with:
+        python-version: '3.9.x'
+    - run: pip install meson ninja scan-build
+    - run: python3 -m pip install -r requirements.txt
+    - run: python3 -m pytest test/run_tests.py
+
+  host_macosx_12:
+    runs-on: macos-12
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v3
+      with:
+        python-version: '3.9.x'
+    - run: pip install meson ninja scan-build
+    - run: python3 -m pip install -r requirements.txt
+    - run: python3 -m pytest test/run_tests.py
