@@ -1,10 +1,14 @@
-# Python program
+# Meson-UI
 
 ## overview
 
 * * *
 
-Add info about this app here.
+Meson-UI is an open source build GUI meant to be both extremely fast, and, even more
+importantly, as user friendly as possible.
+
+The main design point of Meson-UI is to provide a standalone portable build GUI and
+allow the user to access all or most of Meson build systems features.
 
 ## preview
 
@@ -39,7 +43,7 @@ python3 setup.py install
 And finally we run this cool application:
 
 ```console
-prog
+meson-ui
 ```
 
 ## contact
