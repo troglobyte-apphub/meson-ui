@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-
 #
-# file: setup.py
-# author: Michael Brockus
-# gmail: <michaelbrockus@gmail.com>
+# Troglobyte AppHub:
+# author: Michael Gene Brockus
+# Gmail: <mail: michaelbrockus@gmail.com>
 #
 from setuptools import setup
 
@@ -18,7 +17,8 @@ if __name__ == '__main__':
         zip_safe=True,
         url='https://github.com/troglobyte-apphub/meson-ui',
         packages=[
-            'code'
+            'code',
+            'code.mesoncli'
         ],
         python_requires='>=3.8',
         entry_points={
