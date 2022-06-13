@@ -17,7 +17,8 @@ if __name__ == '__main__':
         zip_safe=True,
         url='https://github.com/troglobyte-apphub/meson-ui',
         packages=[
-            'code'
+            'code',
+            'code.mesoncli'
         ],
         python_requires='>=3.8',
         entry_points={
