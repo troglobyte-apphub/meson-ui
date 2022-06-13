@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-
 #
-# file: setup.py
-# author: Michael Brockus
-# gmail: <michaelbrockus@gmail.com>
+# Troglobyte AppHub:
+# author: Michael Gene Brockus
+# Gmail: <mail: michaelbrockus@gmail.com>
 #
 from setuptools import setup
 
