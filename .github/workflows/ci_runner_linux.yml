@@ -1,66 +1,113 @@
+#
+# Troglobyte AppHub:
+# author: Michael Gene Brockus
+# gmail: <michaelbrockus@gmail.com>
+#
 name: Host Linux CI
 
+#
+# We have is configured so that ci_runner_linux only runs
+# when source files, build scripts and this CI files is
+# changed, we should not just run CI for all changes.
+#
 on:
   push:
-    branches: [ "main" ]
+    paths:
+      - ".github/workflows/ci_runner_linux.yml"
+      - "*.py"   # Python source files
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - "main"
+      - "next"
+    paths:
+      - ".github/workflows/ci_runner_linux.yml"
+      - "*.py"   # Python source files
 
 permissions:
   contents: read
 
-
+#
+# We list all the Linux systems in a nice list so the
+# DevOps team can manage them.
+# 
 jobs:
+  #
+  # ChromeOS latest host system target
+  #
   host_chromeos:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - uses: nanasess/setup-chromedriver@v1.0.7
     - run: chromedriver --url-base=/wd/hub &
-    - run: sudo apt-get install python3 python3-pip -y
-    - run: python3 -m pip install -r requirements.txt
-    - run: python3 -m pytest test/run_tests.py
-
+    - name: Install Meson build
+      run: |
+        sudo apt-get install --fix-missing python3 python3-pip g++ cppcheck -y &&
+        python -m pip install -r requirements.txt
+    - name: Scan, Tests
+      run: |
+           flake8 .
+           python -m pytest test/run_tests.py
+  #
+  # Ubuntu latest host system target
+  #
   host_ubuntu:
     runs-on: ubuntu-latest
     container:
       image: "michaelbrockus/ubuntu-host:latest"
     steps:
     - uses: actions/checkout@v3
-    - run: |
-        python3 -m pip install -r requirements.txt &&
-        python3 -m pytest test/run_tests.py
+    - name: Running CI-Image
+      run: |
+           python3 -m pip install -r requirements.txt
+           flake8 .
+           python3 -m pytest test/run_tests.py
       working-directory: .
- 
+
+  #
+  # Debian latest host system target
+  #
   host_debian:
     runs-on: ubuntu-latest
     container:
       image: "michaelbrockus/debian-host:latest"
     steps:
     - uses: actions/checkout@v3
-    - run: |
-        python3 -m pip install -r requirements.txt &&
-        python3 -m pytest test/run_tests.py
+    - name: Running CI-Image
+      run: |
+           python3 -m pip install -r requirements.txt
+           flake8 .
+           python3 -m pytest test/run_tests.py
       working-directory: .
 
+  #
+  # Fedora latest host system target
+  #
   host_fedora:
     runs-on: ubuntu-latest
     container:
       image: "michaelbrockus/fedora-host:latest"
     steps:
     - uses: actions/checkout@v3
-    - run: |
-        python3 -m pip install -r requirements.txt &&
-        python3 -m pytest test/run_tests.py
+    - name: Running CI-Image
+      run: |
+           python3 -m pip install -r requirements.txt
+           flake8 .
+           python3 -m pytest test/run_tests.py
       working-directory: .
 
+  #
+  # ArchLinux latest host system target
+  #
   host_archlinux:
     runs-on: ubuntu-latest
     container:
       image: "michaelbrockus/archlinux-host:latest"
     steps:
     - uses: actions/checkout@v3
-    - run: |
-        python3 -m pip install -r requirements.txt &&
-        python3 -m pytest test/run_tests.py
+    - name: Running CI-Image
+      run: |
+           python -m pip install -r requirements.txt
+           flake8 .
+           python -m pytest test/run_tests.py
       working-directory: .
