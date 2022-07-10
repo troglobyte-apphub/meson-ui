@@ -6,5 +6,11 @@
 #
 from .program import greet
 
+import sys
+from PyQt6.QtWidgets import QApplication, QPushButton
+
+
 def main_prog():
-    print(greet())
+    app = QApplication(sys.argv)
+    window.show()
+    app.exec()
